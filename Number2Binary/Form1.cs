@@ -19,56 +19,56 @@ namespace Number2Binary
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtInput.Text) || string.IsNullOrWhiteSpace(txtInput.Text))
+            // Checking Exceptions
+
+            if (string.IsNullOrEmpty(txtInput.Text) || string.IsNullOrWhiteSpace(txtInput.Text) || (int.Parse(txtInput.Text)== 0))
             {
-                MessageBox.Show("Please enter a value");
+                MessageBox.Show("Please enter a whole number only");
             }
 
             else
             {
+                // Parsing
                 int input = int.Parse(txtInput.Text);
                 int save = input;
-
-                if (input <= 0 )
-                {
-                    MessageBox.Show("Please enter whole number");
-                }
-
-                else
-                {
                     int count = 0;
-                    string binary = "";
+                // This string is for concating
+                    string concats = "";
 
                     while (input >= 1)
                     {
+                    // Binary rule divide on 2
                         int div = input / 2;
+                    // find the remainder
                         int rem = input % 2;
                         if (rem == 1)
                         {
                             count++;
-                            string a = rem.ToString();
-                            binary += a;
+                        // converting int to string
+                            string add = rem.ToString();
+                            concats += add;
                         }
                         else
                         {
 
-                            binary += 0.ToString();
+                            concats += 0.ToString();
                         }
 
-
+                        // input assigned to half of the value
                         input = div;
 
 
                     }
 
-                    char[] reverse = binary.ToCharArray();
+                    // Createing Char[] to store string for reversing 
+                    char[] reverse = concats.ToCharArray();
+                // reversing the array
                     Array.Reverse(reverse);
-                    string n = "";
-                    n = new string(reverse);
-
-
-                    MessageBox.Show("Binary number of  " + save.ToString() + " => " + n + "\nToatl number of Ones in this binary are => " + count.ToString());
-                }
+                // reversing back to string
+                    string binary = new string(reverse);
+                    
+                    MessageBox.Show("Binary number of  " + save.ToString() + " => " + binary + "\nToatl number of Ones in this binary are => " + count.ToString());
+                
             }
         }
 
